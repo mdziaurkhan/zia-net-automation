@@ -1,6 +1,6 @@
 all:
   children:
-    routers:
+    routers:    # created this group
       hosts:
         192.168.122.10:
         192.168.122.20:
