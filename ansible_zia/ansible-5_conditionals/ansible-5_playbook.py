@@ -7,7 +7,7 @@
       commands:
         - show run | i hostname
 
-    register: output
+    register: output    # you can give anyname 
 
   - name: "show output with when conditions"
     when: '"ziaR1" in "{{output.stdout}}"'
