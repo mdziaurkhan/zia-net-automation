@@ -1,0 +1,26 @@
+- hosts: routers
+  gather_facts: no
+
+  tasks:
+  - name: configring loopback 0 interface
+    ios_l3_interfaces:
+      config:
+        - name: loopback0
+          ipv4:
+          - address: "172.16.{{l}}.1/24"  #l is the variable
+      state: merged
+
+  - name: configuring fa1/0 interface
+    ios_config:
+      lines:
+        - description confiured_by_ansible
+        - "ip address 172.16.5.{{l}} 255.255.255.0" #l is the variable
+        - no shutdown
+      parents: interface FastEthernet1/0
+
+  - name: configuring OSPF
+    ios_config:
+      lines:
+        - network 172.16.5.0 0.0.0.255 area 0
+        - "network 172.16.{{l}}.0 0.0.0.255 area {{l}}"  #l is the variable
+      parents: router ospf 1

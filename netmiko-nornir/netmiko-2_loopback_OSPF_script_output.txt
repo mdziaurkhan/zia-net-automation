@@ -1,0 +1,440 @@
+=================BEFORE============== ziaR1# ===============BEFORE=============
+ziaR1# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.10          -   ca01.2700.0000  ARPA   FastEthernet0/0
+
+ziaR1# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.10/32 is directly connected, FastEthernet0/0
+
+ziaR1# show ip interface brief | in up
+FastEthernet0/0            192.168.122.10  YES NVRAM  up                    up
+
+======Configuring lo0======= ziaR1# =====Configuring lo0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR1(config)#interface loopback 0
+ziaR1(config-if)#ip address 172.16.10.1 255.255.255.0
+ziaR1(config-if)#no shutdown
+ziaR1(config-if)#end
+ziaR1#
+
+======Configuring fa1/0======= ziaR1# =====Configuring fa1/0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR1(config)#interface fa1/0
+ziaR1(config-if)#ip address 172.16.5.1 255.255.255.0
+ziaR1(config-if)#no shutdown
+ziaR1(config-if)#end
+ziaR1#
+
+======Configuring OSPF======= ziaR1# =====Configuring OSPF=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR1(config)#router ospf 1
+ziaR1(config-router)#network 172.16.5.0 0.0.0.255 area 0
+ziaR1(config-router)#network 172.16.10.0 0.0.0.255 area 10
+ziaR1(config-router)#end
+ziaR1#
+
+=================AFTER============== ziaR1# ===============AFTER=============
+ziaR1# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  172.16.5.1              -   ca01.2700.001c  ARPA   FastEthernet1/0
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.10          -   ca01.2700.0000  ARPA   FastEthernet0/0
+
+ziaR1# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C        172.16.5.0/24 is directly connected, FastEthernet1/0
+L        172.16.5.1/32 is directly connected, FastEthernet1/0
+C        172.16.10.0/24 is directly connected, Loopback0
+L        172.16.10.1/32 is directly connected, Loopback0
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.10/32 is directly connected, FastEthernet0/0
+
+ziaR1# show ip interface brief | in up
+FastEthernet0/0            192.168.122.10  YES NVRAM  up                    up
+FastEthernet1/0            172.16.5.1      YES manual up                    up
+Loopback0                  172.16.10.1     YES manual up                    up
+
+=================BEFORE============== ziaR2# ===============BEFORE=============
+ziaR2# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.20          -   ca02.2712.0000  ARPA   FastEthernet0/0
+
+ziaR2# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.20/32 is directly connected, FastEthernet0/0
+
+ziaR2# show ip interface brief | in up
+FastEthernet0/0            192.168.122.20  YES NVRAM  up                    up
+
+======Configuring lo0======= ziaR2# =====Configuring lo0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR2(config)#interface loopback 0
+ziaR2(config-if)#ip address 172.16.20.1 255.255.255.0
+ziaR2(config-if)#no shutdown
+ziaR2(config-if)#end
+ziaR2#
+
+======Configuring fa1/0======= ziaR2# =====Configuring fa1/0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR2(config)#interface fa1/0
+ziaR2(config-if)#ip address 172.16.5.2 255.255.255.0
+ziaR2(config-if)#no shutdown
+ziaR2(config-if)#end
+ziaR2#
+
+======Configuring OSPF======= ziaR2# =====Configuring OSPF=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR2(config)#router ospf 1
+ziaR2(config-router)#network 172.16.5.0 0.0.0.255 area 0
+ziaR2(config-router)#network 172.16.20.0 0.0.0.255 area 20
+ziaR2(config-router)#end
+ziaR2#
+
+=================AFTER============== ziaR2# ===============AFTER=============
+ziaR2# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  172.16.5.1              0   ca01.2700.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.2              -   ca02.2712.001c  ARPA   FastEthernet1/0
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.20          -   ca02.2712.0000  ARPA   FastEthernet0/0
+
+ziaR2# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C        172.16.5.0/24 is directly connected, FastEthernet1/0
+L        172.16.5.2/32 is directly connected, FastEthernet1/0
+C        172.16.20.0/24 is directly connected, Loopback0
+L        172.16.20.1/32 is directly connected, Loopback0
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.20/32 is directly connected, FastEthernet0/0
+
+ziaR2# show ip interface brief | in up
+FastEthernet0/0            192.168.122.20  YES NVRAM  up                    up
+FastEthernet1/0            172.16.5.2      YES manual up                    up
+Loopback0                  172.16.20.1     YES manual up                    up
+
+=================BEFORE============== ziaR3# ===============BEFORE=============
+ziaR3# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.30          -   ca03.2722.0000  ARPA   FastEthernet0/0
+
+ziaR3# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.30/32 is directly connected, FastEthernet0/0
+
+ziaR3# show ip interface brief | in up
+FastEthernet0/0            192.168.122.30  YES NVRAM  up                    up
+
+======Configuring lo0======= ziaR3# =====Configuring lo0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR3(config)#interface loopback 0
+ziaR3(config-if)#ip address 172.16.30.1 255.255.255.0
+ziaR3(config-if)#no shutdown
+ziaR3(config-if)#end
+ziaR3#
+
+======Configuring fa1/0======= ziaR3# =====Configuring fa1/0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR3(config)#interface fa1/0
+ziaR3(config-if)#ip address 172.16.5.3 255.255.255.0
+ziaR3(config-if)#no shutdown
+ziaR3(config-if)#end
+ziaR3#
+
+======Configuring OSPF======= ziaR3# =====Configuring OSPF=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR3(config)#router ospf 1
+ziaR3(config-router)#network 172.16.5.0 0.0.0.255 area 0
+ziaR3(config-router)#network 172.16.30.0 0.0.0.255 area 30
+ziaR3(config-router)#end
+ziaR3#
+
+=================AFTER============== ziaR3# ===============AFTER=============
+ziaR3# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  172.16.5.1              0   ca01.2700.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.2              0   ca02.2712.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.3              -   ca03.2722.001c  ARPA   FastEthernet1/0
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.30          -   ca03.2722.0000  ARPA   FastEthernet0/0
+
+ziaR3# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C        172.16.5.0/24 is directly connected, FastEthernet1/0
+L        172.16.5.3/32 is directly connected, FastEthernet1/0
+C        172.16.30.0/24 is directly connected, Loopback0
+L        172.16.30.1/32 is directly connected, Loopback0
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.30/32 is directly connected, FastEthernet0/0
+
+ziaR3# show ip interface brief | in up
+FastEthernet0/0            192.168.122.30  YES NVRAM  up                    up
+FastEthernet1/0            172.16.5.3      YES manual up                    up
+Loopback0                  172.16.30.1     YES manual up                    up
+
+=================BEFORE============== ziaR4# ===============BEFORE=============
+ziaR4# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.40          -   ca04.2733.0000  ARPA   FastEthernet0/0
+
+ziaR4# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.40/32 is directly connected, FastEthernet0/0
+
+ziaR4# show ip interface brief | in up
+FastEthernet0/0            192.168.122.40  YES NVRAM  up                    up
+
+======Configuring lo0======= ziaR4# =====Configuring lo0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR4(config)#interface loopback 0
+ziaR4(config-if)#ip address 172.16.40.1 255.255.255.0
+ziaR4(config-if)#no shutdown
+ziaR4(config-if)#end
+ziaR4#
+
+======Configuring fa1/0======= ziaR4# =====Configuring fa1/0=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR4(config)#interface fa1/0
+ziaR4(config-if)#ip address 172.16.5.4 255.255.255.0
+ziaR4(config-if)#no shutdown
+ziaR4(config-if)#end
+ziaR4#
+
+======Configuring OSPF======= ziaR4# =====Configuring OSPF=============
+config term
+Enter configuration commands, one per line.  End with CNTL/Z.
+ziaR4(config)#router ospf 1
+ziaR4(config-router)#network 172.16.5.0 0.0.0.255 area 0
+ziaR4(config-router)#network 172.16.40.0 0.0.0.255 area 40
+ziaR4(config-router)#end
+ziaR4#
+
+=================AFTER============== ziaR4# ===============AFTER=============
+ziaR4# show ip arp
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  172.16.5.1              0   ca01.2700.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.2              0   ca02.2712.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.3              0   ca03.2722.001c  ARPA   FastEthernet1/0
+Internet  172.16.5.4              -   ca04.2733.001c  ARPA   FastEthernet1/0
+Internet  192.168.122.1           0   5254.0024.84ff  ARPA   FastEthernet0/0
+Internet  192.168.122.40          -   ca04.2733.0000  ARPA   FastEthernet0/0
+
+ziaR4# show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 4 subnets, 2 masks
+C        172.16.5.0/24 is directly connected, FastEthernet1/0
+L        172.16.5.4/32 is directly connected, FastEthernet1/0
+C        172.16.40.0/24 is directly connected, Loopback0
+L        172.16.40.1/32 is directly connected, Loopback0
+      192.168.122.0/24 is variably subnetted, 2 subnets, 2 masks
+C        192.168.122.0/24 is directly connected, FastEthernet0/0
+L        192.168.122.40/32 is directly connected, FastEthernet0/0
+
+ziaR4# show ip interface brief | in up
+FastEthernet0/0            192.168.122.40  YES NVRAM  up                    up
+FastEthernet1/0            172.16.5.4      YES manual up                    up
+Loopback0                  172.16.40.1     YES manual up                    up
+
+*******Please wait 30 sec so that OSPF neighbourship and topology can be built*********
+====after applying all the config ospf============== ziaR1# ============
+ziaR1# show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+
+ziaR1# show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.16.20.1       1   2WAY/DROTHER    00:00:37    172.16.5.2      FastEthernet1/0
+172.16.30.1       1   2WAY/DROTHER    00:00:34    172.16.5.3      FastEthernet1/0
+172.16.40.1       1   FULL/DR         00:00:39    172.16.5.4      FastEthernet1/0
+
+====after applying all the config ospf============== ziaR2# ============
+ziaR2# show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 5 subnets, 2 masks
+O IA     172.16.40.1/32 [110/2] via 172.16.5.4, 00:00:02, FastEthernet1/0
+
+ziaR2# show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.16.10.1       1   2WAY/DROTHER    00:00:37    172.16.5.1      FastEthernet1/0
+172.16.30.1       1   FULL/BDR        00:00:39    172.16.5.3      FastEthernet1/0
+172.16.40.1       1   FULL/DR         00:00:39    172.16.5.4      FastEthernet1/0
+
+====after applying all the config ospf============== ziaR3# ============
+ziaR3# show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 7 subnets, 2 masks
+O IA     172.16.10.1/32 [110/2] via 172.16.5.1, 00:00:03, FastEthernet1/0
+O IA     172.16.20.1/32 [110/2] via 172.16.5.2, 00:00:03, FastEthernet1/0
+O IA     172.16.40.1/32 [110/2] via 172.16.5.4, 00:00:08, FastEthernet1/0
+
+ziaR3# show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.16.10.1       1   FULL/DROTHER    00:00:33    172.16.5.1      FastEthernet1/0
+172.16.20.1       1   FULL/DROTHER    00:00:34    172.16.5.2      FastEthernet1/0
+172.16.40.1       1   FULL/DR         00:00:32    172.16.5.4      FastEthernet1/0
+
+====after applying all the config ospf============== ziaR4# ============
+ziaR4# show ip route ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      172.16.0.0/16 is variably subnetted, 7 subnets, 2 masks
+O IA     172.16.10.1/32 [110/2] via 172.16.5.1, 00:00:16, FastEthernet1/0
+O IA     172.16.20.1/32 [110/2] via 172.16.5.2, 00:00:16, FastEthernet1/0
+O IA     172.16.30.1/32 [110/2] via 172.16.5.3, 00:00:16, FastEthernet1/0
+
+ziaR4# show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+172.16.10.1       1   FULL/DROTHER    00:00:34    172.16.5.1      FastEthernet1/0
+172.16.20.1       1   FULL/DROTHER    00:00:37    172.16.5.2      FastEthernet1/0
+172.16.30.1       1   FULL/BDR        00:00:34    172.16.5.3      FastEthernet1/0

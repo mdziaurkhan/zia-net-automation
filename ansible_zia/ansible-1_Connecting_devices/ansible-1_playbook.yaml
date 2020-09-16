@@ -1,0 +1,15 @@
+- hosts: routers
+  gather_facts: no
+
+  tasks:
+    - name: show interface status command
+      ios_command:
+        commands:
+          - show run | i hostname
+          - show ip interface brief | i up
+
+      register: output
+
+    - name: show output
+      debug:
+        var: output
