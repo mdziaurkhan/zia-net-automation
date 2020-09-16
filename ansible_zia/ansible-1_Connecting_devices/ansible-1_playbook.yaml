@@ -8,7 +8,7 @@
           - show run | i hostname
           - show ip interface brief | i up
 
-      register: output       #saving the output
+      register: output     
 
     - name: show output
       debug:

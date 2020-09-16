@@ -5,4 +5,4 @@ ansible_network_os: ios
 ansible_become: yes
 ansible_become_method: enable
 ansible_become_pass: zia123
-ansible_python_interpreter: /usr/bin/python3  #to use python3
+ansible_python_interpreter: /usr/bin/python3
