@@ -1,0 +1,10 @@
+<!--use extends keyworkd to use layout.html-->
+{% extends "layout.html" %}
+{% block content %}
+ <h2>Network Automation using Python & Flask by Zia!</h2>
+ <!--for statemnet use curly braces and percentage sign-->
+ {% for switch in zia_ios_switches%}
+ <!--for variable use dounle curly braces-->
+  <p>{{switch}}</p>
+ {%endfor%}
+{% endblock %}

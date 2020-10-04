@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% if title %}
+      <title>zia-NetworkAutomation-{{ title }}</title>
+    {% else %}
+      <title>zia-NetworkAutomation</title>
+    {% endif %}
+  </head>
+  <body>
+    <!--Creating a block name content-->
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
