@@ -1,6 +1,7 @@
 #check this document for initial/minimal config: https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application
 # to use templates we have to import render_template
-from flask import Flask, render_template
+#for main.css file we need to import url_for
+from flask import Flask, render_template, url_for
 app = Flask(__name__)   # we creared this variable name "app"
 
 iso_switches = ['zia-R1','zia-R3','zia-R3','zia-R4']
