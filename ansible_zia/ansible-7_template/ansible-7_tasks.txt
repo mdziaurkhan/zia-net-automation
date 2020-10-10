@@ -1,0 +1,11 @@
+Create the template for Cisco routers , where 
+	i) router name will be different, script will ask the router hostname
+
+	ii) script will ask the username and password for the router, 
+	and make sure you type the right password , so it will ask to reenter the password.
+	make sure when you type the password it is invisible.
+
+	iii)configure 2 interfaces , where you will provide the ip/subnet mask.
+
+all other configuration will be same for all routers. 
+	  
