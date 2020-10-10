@@ -1,0 +1,12 @@
+hostname {{hostname_input}}
+
+
+aaa new-model
+aaa authentication login default local
+
+username {{username_input}} privilege 15 password {{password_input}}
+
+line vty 0 15
+privilege level 15
+logging synchronous
+transport input telnet ssh
