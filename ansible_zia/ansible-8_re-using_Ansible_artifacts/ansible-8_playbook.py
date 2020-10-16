@@ -9,8 +9,10 @@
     gather_facts: no
 
     tasks:
-       - include_vars:
+       - name: "by using include_vars add connection variables"
+         include_vars:
             file: /home/mdziaurkhan/zia-net-automation/ansible_zia/ansible-1_Connecting_devices/group_vars/routers
-       - include_tasks: ansible-8_task.py
+       - name: " create 2 users by using include_tasks "
+         include_tasks: ansible-8_task.py
          vars:
             user_created_by_lookup: {'admin1':'admin123!', 'admin2':'admin123!' }

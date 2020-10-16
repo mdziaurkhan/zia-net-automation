@@ -2,14 +2,15 @@
   gather_facts: no
 
   tasks:
-    - name: show interface status command
+    - name: "Connectivity Check with Control machine by running ios commands"
       ios_command:
         commands:
           - show run | i hostname
           - show ip interface brief | i up
 
-      register: output     
+      #register: output
 
-    - name: show output
-      debug:
-        var: output
+    #- name: show output
+      #when: '"hostname" in "{{output.stdout}}"'
+      #debug:
+        #msg: {{output}}
