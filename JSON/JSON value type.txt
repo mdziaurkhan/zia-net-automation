@@ -1,0 +1,9 @@
+JSON value types represent the data types that occur on the righthand side of the colon(:) of a name/value pair.
+JSON value type inclue the following -
+    1) object
+    2) array
+    3) string ( string wrapped in single quotes (') are not valid)
+    4) number
+    5) boolean ( true or false)
+    6) null
+    
