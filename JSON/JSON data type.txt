@@ -1,0 +1,4 @@
+JSON has the following core date types -
+    1) key/value pair ( cosnists of a key (a date attribute) and a value)
+    2) Object ( an unordered collection of name/value paris)
+    3) Array ( collection of prdered values)
