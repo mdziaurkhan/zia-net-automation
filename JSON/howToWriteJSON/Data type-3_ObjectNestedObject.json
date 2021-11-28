@@ -11,6 +11,7 @@
             "state": "TX",
             "zipCode": 75080,
             "country": "USA"
-        }
+        },
+        "activeStudent": true
     }
 }
