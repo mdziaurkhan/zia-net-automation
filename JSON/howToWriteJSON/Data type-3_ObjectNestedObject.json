@@ -1,0 +1,16 @@
+{
+    "student": {
+        "firstName": "Md Ziaur",
+        "middleName": "Rahman",
+        "lastName": "Khan",
+        "topics": ["JSON", "RestAPI", "Automation"],
+        "address": {
+            "street1": "696 Any Street",
+            "street2": null,
+            "city": "Richardson",
+            "state": "TX",
+            "zipCode": null,
+            "country": "USA"
+        }
+    }
+}
