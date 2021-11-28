@@ -1,0 +1,8 @@
+{
+    "student": {
+        "firstName": "Md Ziaur",
+        "middleName": "Rahman",
+        "lastName": "Khan",
+        "topics": ["JSON", "RestAPI", "Automation"]
+    }
+}
