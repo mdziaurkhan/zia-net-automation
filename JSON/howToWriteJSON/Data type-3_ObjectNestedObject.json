@@ -9,7 +9,7 @@
             "street2": null,
             "city": "Richardson",
             "state": "TX",
-            "zipCode": null,
+            "zipCode": 75080,
             "country": "USA"
         }
     }
