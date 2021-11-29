@@ -1,52 +1,84 @@
 {
-    "student": [
-        {
-        "firstName": "Md Ziaur",
-        "middleName": "Rahman",
-        "lastName": "Khan",
-        "topics": ["JSON", "RestAPI", "Automation"],
-        "id": 0,
-        "address": {
-            "street1": "696 Any Street",
-            "street2": null,
-            "city": "Richardson",
-            "state": "TX",
-            "zipCode": 75080,
-            "country": "USA"
-        },
-        "activeStudent": true
+  "student": [
+    {
+      "firstName": "Md Ziaur",
+      "middleName": "Rahman",
+      "lastName": "Khan",
+      "topics": [
+        "JSON",
+        "RestAPI",
+        "Automation"
+      ],
+      "id": 0,
+      "address": {
+        "street1": "696 Any Street",
+        "street2": null,
+        "city": "Richardson",
+        "state": "TX",
+        "zipCode": 75080,
+        "country": "USA"
+      },
+      "activeStudent": true
     },
     {
-        "firstName": "Cristiano",
-        "middleName": null,
-        "lastName": "Ronaldo",
-        "topics": ["JSON", "RestAPI", "Automation"],
-        "id": 1,
-        "address": {
-            "street1": "CR7 Street",
-            "street2": null,
-            "city": "Funchal",
-            "state": null,
-            "zipCode": null,
-            "country": "Portugal"
-        },
-        "activeStudent": false
+      "firstName": "Cristiano",
+      "middleName": null,
+      "lastName": "Ronaldo",
+      "topics": [
+        "JSON",
+        "RestAPI",
+        "Automation"
+      ],
+      "id": 1,
+      "address": {
+        "street1": "CR7 Street",
+        "street2": null,
+        "city": "Funchal",
+        "state": null,
+        "zipCode": null,
+        "country": "Portugal"
+      },
+      "activeStudent": false
     },
     {
-        "firstName": "Lionel",
-        "middleName":  "Andrés",
-        "lastName": " Messi",
-        "topics": ["JSON", "RestAPI", "Automation"],
-        "id": 2,
-        "address": {
-            "street1": "M10 Street",
-            "street2": null,
-            "city": " Rosario",
-            "state": null,
-            "zipCode": null,
-            "country": "Argentina"
-        },
-        "activeStudent": false
+      "firstName": "Lionel",
+      "middleName": "Andrés",
+      "lastName": " Messi",
+      "topics": [
+        "JSON",
+        "RestAPI",
+        "Automation"
+      ],
+      "id": 2,
+      "address": {
+        "street1": "M10 Street",
+        "street2": null,
+        "city": " Rosario",
+        "state": null,
+        "zipCode": null,
+        "country": "Argentina"
+      },
+      "activeStudent": false
+    },
+    {
+      "firstName": "Naymer",
+      "middleName": "da Silva Santos",
+      "lastName": "Júnior",
+      "topics": [
+        "JSON",
+        "RestAPI",
+        "Automation"
+      ],
+      "id": 3,
+      "address": {
+        "street1": "N10 Street",
+        "street2": null,
+        "city": "Mogi das Cruzes",
+        "state": "São Paulo",
+        "zipCode": null,
+        "country": " Brazil"
+      },
+      "activeStudent": false
     }
-]  
+  ]
 }
