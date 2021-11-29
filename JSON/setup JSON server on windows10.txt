@@ -1,0 +1,28 @@
+Step-1: Install Node.js (Note:json-server is a Node.js module.)
+        a) NVM installation: 
+            we will use NVM ( Node Version Manager) to install Node.js. NVM makes it easy to install/uninstall Node.js.
+                1) nvm=-windows doenload page https://github.com/coreybutler/nvm-windows/releases
+        b) Node.js installation:
+            open command prompt -
+                1)type 
+                    C:\WINDOWS\system32>nvm
+                2) type
+                    C:\WINDOWS\system32>nvm list available
+                3) type 
+                    C:\WINDOWS\system32>nvm install v17.1.0  ( or which version is latest)
+                4) test the install
+                    C:\WINDOWS\system32>node 
+                    output: -v17.1.0
+
+Step-2: Install json-server.
+        a) To install : npm install -g json-server
+            C:\Users\Home\Documents\Github\zia-net-automation\JSON\howToWriteJSON>npm install -g json-server
+        
+        b) To run:
+            C:\Users\Home\Documents\Github\zia-net-automation\JSON\howToWriteJSON>json-server -p 5000 "Data type-3_ObjectNestedObject.json"
+
+        c) To access:  
+            http://localhost:5000/student/
+
+        d) to Stop json-server
+            Ctrl-C
