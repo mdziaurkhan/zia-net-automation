@@ -1,0 +1,1 @@
+trying to learn AWS automation so that can deploy the AWS VPC and other contruct by code as a part of Infrastructure as a Code (IaaS)
