@@ -1,8 +1,9 @@
+interface Loopback1
+   description Shared VTEP IP
+   ip address 100.100.100.30/32
 vlan 4090
     name mlag-peer
     trunk group mlag-peer
-
-
 int vlan 4090
     ip add {{mlag_vlan4090_ip}}
     no autostate
