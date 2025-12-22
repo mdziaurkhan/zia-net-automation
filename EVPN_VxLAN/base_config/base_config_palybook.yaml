@@ -19,3 +19,11 @@
     arista.eos.eos_config:
       src: leaves_base_template.j2
       save_when : changed
+- name: Spines Base Config 
+  hosts: spines
+  gather_facts: no
+  tasks:
+  - name: base config and save
+    arista.eos.eos_config:
+      src: spines_base_template.j2
+      save_when : changed

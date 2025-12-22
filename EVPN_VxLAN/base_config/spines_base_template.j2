@@ -1,0 +1,81 @@
+hostname {{switchname}}
+!
+switchport default mode routed 
+spanning-tree mode none 
+!
+mac address-table aging-time 1800 
+arp aging timeout default 1500 
+!
+interface defaults
+   mtu 9214
+
+!
+ip routing
+service routing protocols model multi-agent
+!
+interface Ethernet1
+   description zia-leaf1
+   no switchport
+   ip address {{interfaceE1_data_ip}}
+   no shutdown
+!
+interface Ethernet2
+   description zia-leaf2
+   no switchport
+   ip address {{interfaceE2_data_ip}}
+   no shutdown
+!
+interface Ethernet3
+   description  zia-leaf3-1
+   no switchport
+   ip address {{interfaceE3_data_ip}}
+   no shutdown
+!
+interface Ethernet4
+   description zia-leaf3-2
+   no switchport
+   ip address {{interfaceE4_data_ip}}
+   no shutdown
+!
+! Loopback interface for evpn 
+interface Loopback0
+   description Globally Unique Address
+   ip address {{interfacel0_data_ip}}
+!
+!prefix lists and route map
+ip prefix-list PL-LOOPBACKS
+   seq 10 permit 100.100.100.0/24 eq 32
+ip prefix-list PL-P2P-UNDERLAY
+   seq 10 permit 192.168.168.0/24 le 31
+!
+route-map RM-CONN-2-BGP permit 10
+   match ip address prefix-list PL-LOOPBACKS
+route-map RM-CONN-2-BGP permit 20
+   match ip address prefix-list PL-P2P-UNDERLAY
+!
+router bgp {{switch_bgp_asn}}
+   router-id {{switch_bgp_rd}}
+   no bgp default ipv4-unicast 
+   distance bgp 20 200 200 
+   graceful-restart restart-time 300 
+   graceful-restart 
+   maximum-paths 4 
+   neighbor default send-community 
+   neighbor LOCAL-IPV4-PEERS peer group 
+   neighbor LOCAL-IPV4-PEERS password @rista123!
+   neighbor {{bgp_peer_leaf1_ip}} peer group LOCAL-IPV4-PEERS
+   neighbor {{bgp_peer_leaf1_ip}} remote-as 65001
+   neighbor {{bgp_peer_leaf1_ip}} description zia-leaf1 
+   neighbor {{bgp_peer_leaf2_ip}} peer group LOCAL-IPV4-PEERS
+   neighbor {{bgp_peer_leaf2_ip}} remote-as 65002
+   neighbor {{bgp_peer_leaf2_ip}} description zia-leaf2
+   neighbor {{bgp_peer_leaf3_1_ip}} peer group LOCAL-IPV4-PEERS
+   neighbor {{bgp_peer_leaf3_1_ip}} remote-as 65003
+   neighbor {{bgp_peer_leaf3_1_ip}} description zia-leaf3A
+   neighbor {{bgp_peer_leaf3_2_ip}} peer group LOCAL-IPV4-PEERS
+   neighbor {{bgp_peer_leaf3_2_ip}} remote-as 65003
+   neighbor {{bgp_peer_leaf3_2_ip}} description zia-leaf3-2
+   !
+   address-family ipv4
+      neighbor LOCAL-IPV4-PEERS activate
+      redistribute connected route-map RM-CONN-2-BGP

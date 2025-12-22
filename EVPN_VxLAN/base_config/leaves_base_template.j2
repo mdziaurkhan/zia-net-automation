@@ -49,6 +49,7 @@ router bgp {{switch_bgp_asn}}
    neighbor IPv4_UNDERLAY_PEERS peer group
    neighbor IPv4_UNDERLAY_PEERS remote-as 65000
    neighbor IPv4_UNDERLAY_PEERS maximum-routes 1000 warning-only
+   neighbor IPv4_UNDERLAY_PEERS password @rista123!
    neighbor {{bgp_neig_spine1}} peer group IPv4_UNDERLAY_PEERS
    neighbor {{bgp_neig_spine2}} peer group IPv4_UNDERLAY_PEERS
    address-family ipv4

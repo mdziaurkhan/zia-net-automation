@@ -1,9 +1,9 @@
 switchname : zia-leaf3-1
 interfaceE1_data_ip : 172.16.1.5/31
 interfaceE2_data_ip : 172.16.2.5/31
-interfacel0_data_ip : 3.3.3.3/32
+interfacel0_data_ip : 100.100.100.31/32
 switch_bgp_asn : 65003
-switch_bgp_rd : 3.3.3.31
+switch_bgp_rd : 100.100.100.31
 bgp_neig_spine1 : 172.16.1.4
 bgp_neig_spine2 : 172.16.2.4
 mlag_vlan4090_ip : 169.254.0.0/31
