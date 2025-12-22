@@ -1,0 +1,12 @@
+router bgp {{switch_bgp_asn}}
+   neighbor LOCAL-EVPN-PEERS peer group
+   neighbor LOCAL-EVPN-PEERS remote-as 65000
+   neighbor LOCAL-EVPN-PEERS update-source {{bgp_src_interface}}
+   neighbor LOCAL-EVPN-PEERS ebgp-multihop 3 
+   neighbor LOCAL-EVPN-PEERS password @rista123!
+   neighbor {{spine1_lo0_ip}} peer group LOCAL-EVPN-PEERS
+   neighbor {{spine2_lo0_ip}} peer group LOCAL-EVPN-PEERS
+   !
+   address-family evpn
+      neighbor LOCAL-EVPN-PEERS activate
+      route import match-failure action discard
