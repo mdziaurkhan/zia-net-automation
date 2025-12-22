@@ -1,0 +1,7 @@
+- name: connectivity check
+  hosts: switches
+  gather_facts: no
+  tasks:
+  - name: run show version on remote devices
+    arista.eos.eos_command:
+      commands: show version
