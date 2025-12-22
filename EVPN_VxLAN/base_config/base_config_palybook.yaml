@@ -3,13 +3,19 @@
   hosts: MLAG_leaves
   gather_facts: no
   tasks:
-  - name: mlag config
+  - name: mlag config and save
     arista.eos.eos_config:
       src: mlag_base_template.j2
+      save_when : changed
+  - name: mlag iBGP config and save
+    arista.eos.eos_config:
+      src: mlag_peer_iBGP_template.j2
+      save_when : changed
 - name: Leaves Base Config 
   hosts: leaves
   gather_facts: no
   tasks:
-  - name: base config
+  - name: base config and save
     arista.eos.eos_config:
       src: leaves_base_template.j2
+      save_when : changed
