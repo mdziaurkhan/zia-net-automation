@@ -1,0 +1,117 @@
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+
+!Overlay layer 2: MAC-VRF --------------- layer2 VRF
+vlan 100
+   name web
+!
+vlan 200
+   name app
+!
+vlan 300
+   name db
+!
+vlan 99
+   name dev-web
+!
+vlan 199
+   name dev-app
+!
+vlan 299
+   name dev-db
+!
+!
+interface Vxlan1
+   vxlan vlan 100,200,300,99,199,299 vni 10100,10200,10300,10099,10199,10299
+!
+router bgp {{switch_bgp_asn}}
+   !
+   vlan 100
+      rd {{rd_switch_loopback0}}:10100
+      route-target both 10100:10100
+      redistribute learned
+   !
+   vlan 200
+      rd {{rd_switch_loopback0}}:10200
+      route-target both 10200:10200
+      redistribute learned
+   !
+   vlan 300
+      rd {{rd_switch_loopback0}}:10300
+      route-target both 10300:10300
+      redistribute learned
+   !
+  vlan 99
+      rd {{rd_switch_loopback0}}:10099
+      route-target both 10099:10099
+      redistribute learned
+   !
+   vlan 199
+      rd {{rd_switch_loopback0}}:10199
+      route-target both 10199:10199
+      redistribute learned
+   !
+   vlan 299
+      rd {{rd_switch_loopback0}}:10299
+      route-target both 10299:10299
+      redistribute learned
+   !
+!Overlay Layer 3: IP-VRF (Leaf) ------------------ layer3 vrf
+vrf instance PROD
+ip routing vrf PROD
+!
+vrf instance DEV
+ip routing vrf DEV
+!
+interface Vxlan1
+   vxlan vrf PROD vni 50100
+   vxlan vrf DEV vni 50099
+!
+router bgp 65005
+   vrf PROD
+      rd {{rd_switch_loopback0}}:50100
+      route-target import evpn 50100:50100
+      route-target export evpn 50100:50100
+      update wait-install 
+      !
+   vrf DEV
+      rd {{rd_switch_loopback0}}:50099
+      route-target import evpn 50099:50099
+      route-target export evpn 50099:50099
+      update wait-install 
+      !
+!
+!Overlay Unicast IRB
+ip virtual-router mac-address 00:1c:73:00:00:01 
+!
+interface Vlan100
+   mtu 9014 
+   vrf PROD
+   ip address virtual 10.0.100.1/24 
+!
+interface Vlan200
+   mtu 9014
+   vrf PROD
+   ip address virtual 10.0.200.1/24
+!
+interface Vlan300
+   mtu 9014 
+   vrf PROD
+   ip address virtual 10.0.30.1/24 
+!
+interface Vlan99
+   mtu 9014 
+   vrf DEV
+   ip address virtual 10.0.99.1/24 
+!
+interface Vlan199
+   mtu 9014
+   vrf DEV
+   ip address virtual 10.0.199.1/24
+!
+interface Vlan299
+   mtu 9014 
+   vrf DEV
+   ip address virtual 10.0.29.1/24 
+!

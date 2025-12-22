@@ -1,0 +1,16 @@
+- name: Leaves VXLAN Config 
+  hosts: leaves
+  gather_facts: no
+  tasks:
+  - name: leaves vxlan config and save
+    arista.eos.eos_config:
+      src: leaves_vxlan_template.j2
+      save_when : changed
+- name: MLAG Leaves ADDITIONAL VXLAN Config 
+  hosts: MLAG_leaves
+  gather_facts: no
+  tasks:
+  - name: mlag leaves additional vxlan config and save
+    arista.eos.eos_config:
+      src: additional_vxlan_config_MLAG_leaves.j2
+      save_when : changed
