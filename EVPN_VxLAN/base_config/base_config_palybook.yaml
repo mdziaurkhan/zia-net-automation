@@ -1,15 +1,15 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/ansible_connectivity_check/connectivity_check_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/ansible_connectivity_check/host.yaml
-- name: Leaves switches MLAG Config 
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/host.yaml
+- name: Leaves MLAG Config 
   hosts: MLAG_leaves
   gather_facts: no
   tasks:
-  - name: MLAG configuration
+  - name: mlag config
     arista.eos.eos_config:
       src: mlag_base_template.j2
 - name: Leaves Base Config 
   hosts: leaves
   gather_facts: no
   tasks:
-  - name: configuring base config of leaf switches
+  - name: base config
     arista.eos.eos_config:
       src: leaves_base_template.j2
