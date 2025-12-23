@@ -15,3 +15,19 @@
     arista.eos.eos_config:
       src: leaf2.cfg
       save_when : changed
+- name: LEAF3-1 SWITCHPOERTS CONFIG
+  hosts: leaf3-1
+  gather_facts: no
+  tasks:
+  - name: leaf3-1 switchports config and save
+    arista.eos.eos_config:
+      src: leaf3-1.cfg
+      save_when : changed
+- name: LEAF3-2 SWITCHPOERTS CONFIG
+  hosts: leaf3-2
+  gather_facts: no
+  tasks:
+  - name: leaf3-2 switchports config and save
+    arista.eos.eos_config:
+      src: leaf3-2.cfg
+      save_when : changed
