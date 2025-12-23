@@ -35,14 +35,14 @@ route-map RM-CONN-2-BGP-VRFS permit 20
 !
 router bgp {{switch_bgp_asn}}
    vrf PROD
-      neighbor 169.253.0.1 peer group MLAG-IPV4-PEER
+      neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
       redistribute connected route-map RM-CONN-2-BGP-VRFS
       update wait-install
       address-family ipv4
          neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} activate
       !
    vrf DEV
-      neighbor 169.253.0.1 peer group MLAG-IPV4-PEER
+      neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
       redistribute connected route-map RM-CONN-2-BGP-VRFS
       update wait-install 
       address-family ipv4
