@@ -4,6 +4,7 @@ router bgp {{switch_bgp_asn}}
    neighbor LOCAL-EVPN-PEERS update-source {{bgp_src_interface}}
    neighbor LOCAL-EVPN-PEERS ebgp-multihop 3 
    neighbor LOCAL-EVPN-PEERS password @rista123!
+   neighbor LOCAL-EVPN-PEERS send-community extended
    neighbor {{spine1_lo0_ip}} peer group LOCAL-EVPN-PEERS
    neighbor {{spine2_lo0_ip}} peer group LOCAL-EVPN-PEERS
    !

@@ -4,6 +4,7 @@ router bgp 65000
    neighbor LOCAL-EVPN-PEERS update-source Loopback0
    neighbor LOCAL-EVPN-PEERS ebgp-multihop 3 
    neighbor LOCAL-EVPN-PEERS password @rista123!
+   neighbor LOCAL-EVPN-PEERS send-community extended
    neighbor {{bgp_peer_leaf1_ip}} peer group LOCAL-EVPN-PEERS
    neighbor {{bgp_peer_leaf1_ip}} remote-as {{bgp_peer_leaf1_asn}}
    neighbor {{bgp_peer_leaf1_ip}} description zia-leaf1
