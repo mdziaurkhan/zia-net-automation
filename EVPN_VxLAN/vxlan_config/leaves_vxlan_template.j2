@@ -57,18 +57,17 @@ router bgp {{switch_bgp_asn}}
       route-target both 10299:10299
       redistribute learned
    !
-!Overlay Layer 3: IP-VRF (Leaf) ------------------ layer3 vrf
 vrf instance PROD
+!
+!
 ip routing vrf PROD
 !
 vrf instance DEV
+!
+!
 ip routing vrf DEV
 !
-interface Vxlan1
-   vxlan vrf PROD vni 50100
-   vxlan vrf DEV vni 50099
-!
-router bgp 65005
+router bgp {{switch_bgp_asn}}
    vrf PROD
       rd {{rd_switch_loopback0}}:50100
       route-target import evpn 50100:50100
