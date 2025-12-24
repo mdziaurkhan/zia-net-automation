@@ -67,6 +67,10 @@ vrf instance DEV
 !
 ip routing vrf DEV
 !
+interface Vxlan1
+   vxlan vrf PROD vni 50100
+   vxlan vrf DEV vni 50099
+!   
 router bgp {{switch_bgp_asn}}
    vrf PROD
       rd {{rd_switch_loopback0}}:50100
