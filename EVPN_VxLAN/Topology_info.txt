@@ -1,0 +1,94 @@
+spine1
+======
+     Management1 connected to mgmtSW on port Ethernet0
+
+     Ethernet1 connected to leaf1 on port Ethernet1
+
+     Ethernet2 connected to leaf2 on port Ethernet1
+
+     Ethernet3 connected to leaf3-1 on port Ethernet1
+
+     Ethernet4 connected to leaf3-2 on port Ethernet1
+
+
+spine2
+======
+     Management1 connected to mgmtSW on port Ethernet1
+
+     Ethernet1 connected to leaf1 on port Ethernet2
+
+     Ethernet2 connected to leaf2 on port Ethernet2
+
+     Ethernet3 connected to leaf3-1 on port Ethernet2
+
+     Ethernet4 connected to leaf3-2 on port Ethernet2
+
+leaf1
+======
+     Management1 connected to mgmtSW on port Ethernet2
+
+     Ethernet1 connected to spine1 on port Ethernet1
+
+     Ethernet2 connected to spine2 on port Ethernet1
+
+     Ethernet3 connected to Prod_Web1 on port Ethernet0
+
+     Ethernet4 connected to Prod_Web2 on port Ethernet0
+
+     Ethernet5 connected to Prod_App1 on port Ethernet0
+
+     Ethernet6 connected to Dev_Web1 on port Ethernet0
+
+     Ethernet7 connected to Dev_App1 on port Ethernet0
+
+leaf2
+=====
+     Management1 connected to mgmtSW on port Ethernet3
+
+     Ethernet1 connected to spine1 on port Ethernet2
+
+     Ethernet2 connected to spine2 on port Ethernet2
+
+     Ethernet3 connected to Prod_App2 on port Ethernet0
+
+     Ethernet4 connected to Prod_App3 on port Ethernet0
+
+     Ethernet5 connected to Prod_Web3 on port Ethernet0
+
+     Ethernet6 connected to Dev_Web2 on port Ethernet0
+
+     Ethernet7 connected to Prod_DB3 on port Ethernet0
+
+leaf3-1
+=======
+     Management1 connected to mgmtSW on port Ethernet4
+
+     Ethernet1 connected to spine1 on port Ethernet3
+
+     Ethernet2 connected to spine2 on port Ethernet3
+
+     Ethernet3 connected to leaf3-2 on port Ethernet3
+
+     Ethernet4 connected to leaf3-2 on port Ethernet4
+
+     Ethernet5 connected to Prod_Web4 on port Ethernet0
+
+     Ethernet6 connected to Prod_DB1 on port Ethernet0  
+
+leaf3-2
+=======
+     Management1 connected to mgmtSW on port Ethernet5
+
+     Ethernet1 connected to spine1 on port Ethernet4
+
+     Ethernet2 connected to spine2 on port Ethernet4
+
+     Ethernet3 connected to leaf3-1 on port Ethernet3
+
+     Ethernet4 connected to leaf3-1 on port Ethernet4
+
+     Ethernet5 connected to Prod_DB2 on port Ethernet0
+
+     Ethernet6 connected to Dev_DB1 on port Ethernet0
+
+     Ethernet7 connected to Dev_App2 on port Ethernet0     
