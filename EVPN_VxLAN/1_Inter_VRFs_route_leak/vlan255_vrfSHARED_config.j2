@@ -13,8 +13,8 @@ router bgp {{switch_bgp_asn}}
 vrf instance SHARED
 ip routing vrf SHARED
 !
-interface Vxlan1
-   vxlan vrf SHARED vni 50255
+!interface Vxlan1
+!   vxlan vrf SHARED vni 50255
 !   
 router bgp {{switch_bgp_asn}}
    vrf SHARED
@@ -25,7 +25,7 @@ router bgp {{switch_bgp_asn}}
 !
 interface Vlan255
    mtu 9014 
-   vrf PROD
+   vrf SHARED
    ip address virtual 10.0.255.254/24 
 !
 
