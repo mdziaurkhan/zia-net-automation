@@ -1,0 +1,2 @@
+switch_bgp_asn : 65002
+rd_switch_loopback0 : 100.100.100.20

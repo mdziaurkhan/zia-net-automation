@@ -1,0 +1,31 @@
+vlan 255
+   name shared
+!
+interface Vxlan1
+   vxlan vlan 255 vni 10255
+!
+router bgp {{switch_bgp_asn}}
+   vlan 255
+      rd {{rd_switch_loopback0}}:10255
+      route-target both 10255:10255
+      redistribute learned
+!
+vrf instance SHARED
+ip routing vrf SHARED
+!
+interface Vxlan1
+   vxlan vrf SHARED vni 50255
+!   
+router bgp {{switch_bgp_asn}}
+   vrf SHARED
+      rd {{rd_switch_loopback0}}:50255
+      route-target import evpn 50255:50255
+      route-target export evpn 50255:50255
+      update wait-install 
+!
+interface Vlan255
+   mtu 9014 
+   vrf PROD
+   ip address virtual 10.0.255.254/24 
+!
+

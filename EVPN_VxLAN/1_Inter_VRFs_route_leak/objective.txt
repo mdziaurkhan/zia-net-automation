@@ -1,0 +1,4 @@
+Objective:
+1) create a VRF named SHARED, vlan 255(name shared)
+2) allow all machine of PROD VRF to communicate with SHARED VRF.
+3) allow only DEV_APP of DEV VRF to communicate with SHARES VRF. 
