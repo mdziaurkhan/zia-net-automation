@@ -13,8 +13,8 @@ router bgp {{switch_bgp_asn}}
 vrf instance SHARED
 ip routing vrf SHARED
 !
-!interface Vxlan1
-!   vxlan vrf SHARED vni 50255
+interface Vxlan1
+   vxlan vrf SHARED vni 50255
 !   
 router bgp {{switch_bgp_asn}}
    vrf SHARED
