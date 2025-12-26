@@ -1,0 +1,9 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/1_Inter_VRFs_route_leak/route_leaking_between_PROD_and_SHARED_VRFs_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/1_Inter_VRFs_route_leak/host.yaml
+- name: ROUTE Leaking between PROD and SHARED VRFs
+  hosts: border_leaves
+  gather_facts: no
+  tasks:
+  - name: route leaking between PROD and SHARED VRFs
+    arista.eos.eos_config:
+      src: route_leaking_between_PROD_and_SHARED_VRFs.j2
+      save_when : changed
