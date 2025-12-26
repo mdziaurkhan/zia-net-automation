@@ -1,0 +1,24 @@
+!
+no spanning-tree vlan-id 4087
+!
+vlan 4087
+   name MLAG_PEER_VRF_SHARED
+   trunk group mlag-peer
+!
+interface Vlan4087
+   description MLAG iBGP Peer - VRF PROD
+   no autostate
+   vrf SHARED
+   ip address {{vlan_8087_8088_8089_ip}}
+!
+!
+router bgp {{switch_bgp_asn}}
+   vrf SHARED
+      neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
+      update wait-install
+      address-family ipv4
+         neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} activate
+      !
+
+

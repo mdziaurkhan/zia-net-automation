@@ -7,3 +7,11 @@
     arista.eos.eos_config:
       src: vlan255_vrfSHARED_config.j2
       save_when : changed
+- name: MLAG Leaves ADDITIONAL Config 
+  hosts: MLAG_leaves
+  gather_facts: no
+  tasks:
+  - name: mlag leaves additional config and save
+    arista.eos.eos_config:
+      src: vlan255_vrfSHARED_additional_MLAG_config .j2
+      save_when : changed

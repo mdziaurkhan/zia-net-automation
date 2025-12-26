@@ -5,7 +5,7 @@ router bgp {{switch_bgp_asn}}
       route-target export vpn-ipv4 50100:50100
       route-target import vpn-ipv4 50100:50100
       route-target import vpn-ipv4 50255:50255
-      !redistributed connected
+      redistribute connected
 !
    vrf SHARED
       route-target import evpn 50100:50100
@@ -13,4 +13,4 @@ router bgp {{switch_bgp_asn}}
       route-target export vpn-ipv4 50255:50255
       route-target import vpn-ipv4 50255:50255
       route-target import vpn-ipv4 50100:50100
-      !redistributed connected
+      redistribute connected
