@@ -1,0 +1,26 @@
+ip prefix-list export-to-shared
+   seq 10 permit 10.0.99.0/24 le 32
+   seq 20 permit 10.0.100.0/24 le 32
+   seq 30 permit 10.0.200.0/24 le 32
+   seq 40 permit 10.0.30.0/24 le 32
+!
+route-map export-to-shared permit 10
+   match ip address prefix-list export-to-shared
+route-map export-to-shared deny 20
+!
+!
+router bgp {{switch_bgp_asn}}
+   vrf DEV
+      route-target import evpn 50255:50255
+      route-target export evpn 10099:10099
+      !
+   vrf SHARED
+      route-target import evpn 10099:10099
+      ! we want only Dev-APP to import that is we applied route-map , if we only -
+      ! -allow DEV-APP then it WILL BLOCK all PROD , SO have to add all PROD subnets to Prefix-list
+      route-target import evpn route-map export-to-shared
+
+
+
+
+
