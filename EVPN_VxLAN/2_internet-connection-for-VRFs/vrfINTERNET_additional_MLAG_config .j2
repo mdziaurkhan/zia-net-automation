@@ -16,7 +16,6 @@ router bgp {{switch_bgp_asn}}
    vrf INTERNET
       neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
       redistribute connected
-      redistribute static
       update wait-install
       address-family ipv4
          neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} activate
