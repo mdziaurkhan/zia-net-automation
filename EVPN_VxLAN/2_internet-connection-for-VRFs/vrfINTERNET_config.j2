@@ -12,11 +12,3 @@ router bgp {{switch_bgp_asn}}
       route-target export evpn 50005:50005
       update wait-install 
 !
-interface Ethernet12
-   no switchport
-   mtu 9014 
-   vrf INTERNET
-   ip address dhcp
-!
-ip route vrf INTERNET 0.0.0.0 0.0.0.0 192.168.171.2
-!

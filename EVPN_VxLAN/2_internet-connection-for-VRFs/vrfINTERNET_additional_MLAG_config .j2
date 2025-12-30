@@ -13,9 +13,10 @@ interface Vlan4086
 !
 !
 router bgp {{switch_bgp_asn}}
-   vrf SHARED
+   vrf INTERNET
       neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
-      redistribute connected route-map RM-CONN-2-BGP-VRFS
+      redistribute connected
+      redistribute static
       update wait-install
       address-family ipv4
          neighbor {{mlag_prod_dev_shared_vrf_iBGP_peer_ip}} activate
