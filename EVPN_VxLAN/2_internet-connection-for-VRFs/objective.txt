@@ -1,0 +1,5 @@
+Objective:
+1) create a VRF named INTERNET, leaf3-2, port eth12 to INTERNET VRF
+2) share default route from INTERNET VRF to other 
+3) Don't allow Prod_DB servers to access internet.
+note : we will use our leaf3 switches as boarder leaf 

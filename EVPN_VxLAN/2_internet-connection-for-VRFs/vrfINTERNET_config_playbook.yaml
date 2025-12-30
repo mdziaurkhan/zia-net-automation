@@ -1,0 +1,13 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/2_internet-connection-for-VRFs/vrfINTERNET_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/2_internet-connection-for-VRFs/host.yaml
+- name: INTERNET VRF creation
+  hosts: MLAG_leaves
+  gather_facts: no
+  tasks:
+  - name: vrf INTERNET creation and save
+    arista.eos.eos_config:
+      src: vrfINTERNET_config.j2
+      save_when : changed
+  - name: mlag leaves additional config and save
+    arista.eos.eos_config:
+      src: vrfINTERNET_additional_MLAG_config .j2
+      save_when : changed

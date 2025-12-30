@@ -1,0 +1,22 @@
+!
+vrf instance INTERNET
+ip routing vrf INTERNET
+!
+interface Vxlan1
+   vxlan vrf INTERNET vni 50005
+!   
+router bgp {{switch_bgp_asn}}
+   vrf INTERNET
+      rd {{rd_switch_loopback0}}:50005
+      route-target import evpn 50005:50005
+      route-target export evpn 50005:50005
+      update wait-install 
+!
+interface Ethernet12
+   no switchport
+   mtu 9014 
+   vrf INTERNET
+   ip address dhcp
+!
+ip route vrf INTERNET 0.0.0.0 0.0.0.0 192.168.171.2
+!
