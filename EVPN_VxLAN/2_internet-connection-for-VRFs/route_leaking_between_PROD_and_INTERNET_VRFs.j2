@@ -1,0 +1,20 @@
+no ip prefix-list default_internet_route
+!
+no route-map export-to-PROD-from-INTERNET
+router bgp {{switch_bgp_asn}}
+   vrf PROD
+      route-target import evpn 50005:50005
+      route-target import vpn-ipv4 50005:50005
+      route-target import 50005:50005
+!
+   vrf INTERNET
+      route-target import evpn 50100:50100
+      route-target export evpn 50005:50005
+
+      !
+      route-target export vpn-ipv4 50005:50005
+      route-target import vpn-ipv4 50005:50005
+      route-target import vpn-ipv4 50100:50100
+      route-target export 50005:50005
+      route-target import 50005:50005
+

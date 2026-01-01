@@ -1,0 +1,9 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/2_internet-connection-for-VRFs/route_leaking_between_PROD_and_INTERNET_VRFs_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/2_internet-connection-for-VRFs/host.yaml
+- name: ROUTE Leaking between PROD and INTERNET VRFs
+  hosts: border_leaves
+  gather_facts: no
+  tasks:
+  - name: route leaking between PROD and INTERNET VRFs
+    arista.eos.eos_config:
+      src: route_leaking_between_PROD_and_INTERNET_VRFs.j2
+      save_when : changed
