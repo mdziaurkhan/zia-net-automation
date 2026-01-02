@@ -1,6 +1,6 @@
 router bgp {{switch_bgp_asn}}
    neighbor LOCAL-EVPN-PEERS peer group
-   neighbor LOCAL-EVPN-PEERS remote-as 65000
+   neighbor LOCAL-EVPN-PEERS remote-as 65100
    neighbor LOCAL-EVPN-PEERS update-source {{bgp_src_interface}}
    neighbor LOCAL-EVPN-PEERS ebgp-multihop 3 
    neighbor LOCAL-EVPN-PEERS password @rista123!
