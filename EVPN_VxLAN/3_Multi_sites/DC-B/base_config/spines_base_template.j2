@@ -63,17 +63,17 @@ router bgp {{switch_bgp_asn}}
    neighbor LOCAL-IPV4-PEERS peer group 
    neighbor LOCAL-IPV4-PEERS password @rista123!
    neighbor {{bgp_peer_leaf1_ip}} peer group LOCAL-IPV4-PEERS
-   neighbor {{bgp_peer_leaf1_ip}} remote-as 65001
-   neighbor {{bgp_peer_leaf1_ip}} description zia-leaf1 
+   neighbor {{bgp_peer_leaf1_ip}} remote-as 65110
+   neighbor {{bgp_peer_leaf1_ip}} description zia-leaf110 
    neighbor {{bgp_peer_leaf2_ip}} peer group LOCAL-IPV4-PEERS
-   neighbor {{bgp_peer_leaf2_ip}} remote-as 65002
-   neighbor {{bgp_peer_leaf2_ip}} description zia-leaf2
+   neighbor {{bgp_peer_leaf2_ip}} remote-as 65120
+   neighbor {{bgp_peer_leaf2_ip}} description zia-leaf120
    neighbor {{bgp_peer_leaf3_1_ip}} peer group LOCAL-IPV4-PEERS
-   neighbor {{bgp_peer_leaf3_1_ip}} remote-as 65003
-   neighbor {{bgp_peer_leaf3_1_ip}} description zia-leaf3A
+   neighbor {{bgp_peer_leaf3_1_ip}} remote-as 65130
+   neighbor {{bgp_peer_leaf3_1_ip}} description zia-leaf130-1
    neighbor {{bgp_peer_leaf3_2_ip}} peer group LOCAL-IPV4-PEERS
-   neighbor {{bgp_peer_leaf3_2_ip}} remote-as 65003
-   neighbor {{bgp_peer_leaf3_2_ip}} description zia-leaf3-2
+   neighbor {{bgp_peer_leaf3_2_ip}} remote-as 65130
+   neighbor {{bgp_peer_leaf3_2_ip}} description zia-leaf130-2
    !
    address-family ipv4
       neighbor LOCAL-IPV4-PEERS activate
