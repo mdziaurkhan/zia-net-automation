@@ -1,0 +1,12 @@
+switchname : zia-spine101
+interfaceE1_data_ip : 172.16.101.0/31
+interfaceE2_data_ip : 172.16.101.2/31
+interfaceE3_data_ip : 172.16.101.4/31
+interfaceE4_data_ip : 172.16.101.6/31
+interfacel0_data_ip : 100.100.200.101/32
+switch_bgp_asn : 65100
+switch_bgp_rd : 100.100.200.101
+bgp_peer_leaf1_ip : 172.16.101.1
+bgp_peer_leaf2_ip : 172.16.101.3
+bgp_peer_leaf3_1_ip : 172.16.101.5
+bgp_peer_leaf3_2_ip : 172.16.101.7

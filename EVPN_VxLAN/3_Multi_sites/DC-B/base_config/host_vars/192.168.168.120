@@ -1,0 +1,8 @@
+switchname : zia-leaf120
+interfaceE1_data_ip : 172.16.101.3/31
+interfaceE2_data_ip : 172.16.102.3/31
+interfacel0_data_ip : 100.100.200.120/32
+switch_bgp_asn : 65120
+switch_bgp_rd : 100.100.200.120
+bgp_neig_spine1 : 172.16.101.2
+bgp_neig_spine2 : 172.16.102.2

@@ -1,0 +1,58 @@
+hostname {{switchname}}
+!
+spanning-tree edge-port bpduguard default 
+spanning-tree mst 0 priority 0 
+!
+mac address-table aging-time 1800 
+arp aging timeout default 1500 
+!
+dhcp relay
+   tunnel requests disabled 
+   mlag peer-link requests disabled
+!
+interface defaults
+   mtu 9214
+!
+!
+username admin role admin privilege 15 secret arista
+!
+interface Ethernet1
+   desc spine1
+   no switchport
+   ip address {{interfaceE1_data_ip}}
+   mtu 9214
+   no shutdown
+
+interface Ethernet2
+   desc spine2
+   no switchport
+   ip address {{interfaceE2_data_ip}}
+   mtu 9214
+   no shutdown
+!
+interface loopback0
+   desc router-id of BGP
+   ip address {{interfacel0_data_ip}}
+!
+! Enable routing 
+ip routing
+service routing protocols model multi-agent
+!
+router bgp {{switch_bgp_asn}}
+   router-id {{switch_bgp_rd}}
+   no bgp default ipv4-unicast
+   bgp log-neighbor-changes
+   distance bgp 20 200 200
+   graceful-restart 
+   graceful-restart restart-time 300
+   maximum-paths 4 
+   neighbor IPv4_UNDERLAY_PEERS peer group
+   neighbor IPv4_UNDERLAY_PEERS remote-as 65000
+   neighbor IPv4_UNDERLAY_PEERS maximum-routes 1000 warning-only
+   neighbor IPv4_UNDERLAY_PEERS password @rista123!
+   neighbor {{bgp_neig_spine1}} peer group IPv4_UNDERLAY_PEERS
+   neighbor {{bgp_neig_spine2}} peer group IPv4_UNDERLAY_PEERS
+   address-family ipv4
+      neighbor IPv4_UNDERLAY_PEERS activate
+      redistribute connected
+
