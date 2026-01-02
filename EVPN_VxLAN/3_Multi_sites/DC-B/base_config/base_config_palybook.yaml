@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/base_config/host.yaml
 - name: Spines Base Config 
   hosts: spines
   gather_facts: no
