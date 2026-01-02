@@ -1,0 +1,17 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/evpn_overlay_config/overlay_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/evpn_overlay_config/host.yaml
+- name: Leaves EVPN OVERLAY Config 
+  hosts: leaves
+  gather_facts: no
+  tasks:
+  - name: leaves overlay config and save
+    arista.eos.eos_config:
+      src: leaves_overlay_template.j2
+      save_when : changed
+- name: SPINES EVPN OVERLAY Config 
+  hosts: spines
+  gather_facts: no
+  tasks:
+  - name: spine overlay config and save
+    arista.eos.eos_config:
+      src: spinse_overlay_template.j2
+      save_when : changed

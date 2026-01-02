@@ -1,0 +1,8 @@
+bgp_peer_leaf1_ip : 100.100.200.110
+bgp_peer_leaf2_ip : 100.100.200.120
+bgp_peer_leaf3_1_ip : 100.100.200.131
+bgp_peer_leaf3_2_ip : 100.100.200.132
+bgp_peer_leaf1_asn : 65110
+bgp_peer_leaf2_asn : 65120
+bgp_peer_leaf3_1_asn : 65130
+bgp_peer_leaf3_2_asn : 65130

@@ -1,0 +1,23 @@
+router bgp 65000
+   neighbor LOCAL-EVPN-PEERS peer group
+   neighbor LOCAL-EVPN-PEERS next-hop-unchanged
+   neighbor LOCAL-EVPN-PEERS update-source Loopback0
+   neighbor LOCAL-EVPN-PEERS ebgp-multihop 3 
+   neighbor LOCAL-EVPN-PEERS password @rista123!
+   neighbor LOCAL-EVPN-PEERS send-community extended
+   neighbor {{bgp_peer_leaf1_ip}} peer group LOCAL-EVPN-PEERS
+   neighbor {{bgp_peer_leaf1_ip}} remote-as {{bgp_peer_leaf1_asn}}
+   neighbor {{bgp_peer_leaf1_ip}} description zia-leaf1
+   neighbor {{bgp_peer_leaf2_ip}} peer group LOCAL-EVPN-PEERS
+   neighbor {{bgp_peer_leaf2_ip}} remote-as {{bgp_peer_leaf2_asn}}
+   neighbor {{bgp_peer_leaf2_ip}} description zia-leaf2
+   neighbor {{bgp_peer_leaf3_1_ip}} peer group LOCAL-EVPN-PEERS
+   neighbor {{bgp_peer_leaf3_1_ip}} remote-as {{bgp_peer_leaf3_1_asn}}
+   neighbor {{bgp_peer_leaf3_1_ip}} description zia-aristaLAB-leaf3A
+   neighbor {{bgp_peer_leaf3_2_ip}} peer group LOCAL-EVPN-PEERS
+   neighbor {{bgp_peer_leaf3_2_ip}} remote-as {{bgp_peer_leaf3_2_asn}}
+   neighbor {{bgp_peer_leaf3_2_ip}} description zia-aristaLAB-leaf3B
+      !
+   address-family evpn
+      neighbor LOCAL-EVPN-PEERS activate
+!
