@@ -1,0 +1,8 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/ansible_connectivity_check/connectivity_check_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/ansible_connectivity_check/host.yaml
+- name: connectivity check
+  hosts: switches
+  gather_facts: no
+  tasks:
+  - name: run show version on remote devices
+    arista.eos.eos_command:
+      commands: show version

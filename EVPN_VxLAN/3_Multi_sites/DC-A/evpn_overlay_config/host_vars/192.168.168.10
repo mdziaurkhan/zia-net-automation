@@ -1,0 +1,4 @@
+switch_bgp_asn : 65001
+bgp_src_interface : Loopback0
+spine1_lo0_ip : 100.100.100.1
+spine2_lo0_ip : 100.100.100.2

@@ -1,0 +1,17 @@
+all:
+  children:
+    switches:
+      children:
+        leaf1:   
+          hosts:
+            192.168.168.10:
+        leaf2:   
+          hosts:
+            192.168.168.20:
+        leaf3-1:
+          hosts:
+            192.168.168.31:
+        leaf3-2:
+          hosts:
+            192.168.168.32:
+

@@ -1,0 +1,29 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/host.yaml
+- name: Leaves MLAG Config 
+  hosts: MLAG_leaves
+  gather_facts: no
+  tasks:
+  - name: mlag config and save
+    arista.eos.eos_config:
+      src: mlag_base_template.j2
+      save_when : changed
+  - name: mlag iBGP config and save
+    arista.eos.eos_config:
+      src: mlag_peer_iBGP_template.j2
+      save_when : changed
+- name: Leaves Base Config 
+  hosts: leaves
+  gather_facts: no
+  tasks:
+  - name: base config and save
+    arista.eos.eos_config:
+      src: leaves_base_template.j2
+      save_when : changed
+- name: Spines Base Config 
+  hosts: spines
+  gather_facts: no
+  tasks:
+  - name: base config and save
+    arista.eos.eos_config:
+      src: spines_base_template.j2
+      save_when : changed

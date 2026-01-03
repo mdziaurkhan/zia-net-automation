@@ -1,0 +1,32 @@
+!
+no spanning-tree vlan-id 4091
+!
+vlan 4091
+   name MLAG_PEER_L3_UNDERLAY
+   trunk group mlag-peer
+!
+!
+interface Vlan4091
+   description MLAG UNDERLAY BGP PEER
+   no autostate
+   mtu 1500
+   ip address {{mlag_iBGP_inte_vlan4091_ip}}
+!
+!
+route-map RM-MLAG-PEER-OUT deny 10
+   match extcommunity evpn-imported
+   ! to avoid routing loop
+!
+route-map RM-MLAG-PEER-OUT permit 20
+   set origin incomplete
+!
+!
+router bgp {{switch_bgp_asn}}
+    neighbor MLAG-IPV4-PEER peer group
+    neighbor MLAG-IPV4-PEER remote-as {{switch_bgp_asn}}
+    neighbor MLAG-IPV4-PEER maximum-routes 12000 warning-only
+    neighbor MLAG-IPV4-PEER next-hop-self
+    neighbor MLAG-IPV4-PEER route-map RM-MLAG-PEER-OUT out
+    neighbor {{mlag_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
+    address-family ipv4
+        neighbor MLAG-IPV4-PEER activate

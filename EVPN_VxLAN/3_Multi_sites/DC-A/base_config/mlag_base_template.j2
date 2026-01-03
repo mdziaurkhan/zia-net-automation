@@ -1,0 +1,45 @@
+interface Loopback1
+   description Shared VTEP IP
+   ip address 100.100.100.30/32
+vlan 4090
+    name mlag-peer
+    trunk group mlag-peer
+int vlan 4090
+    ip add {{mlag_vlan4090_ip}}
+    no autostate
+    no shut
+!Autostate should be disabled on SVIs configured as an MLAG local interface.
+!
+int Ethernet3
+    desc mlag peer link
+    channel-group 999 mode active
+    mtu 1500
+    no shutdown
+int Ethernet4
+    desc mlag peer link
+    channel-group 999 mode active
+    mtu 1500
+    no shutdown
+!
+int po999
+    desc MLAG Peer
+    switchport mode trunk
+    spanning-tree link-type point-to-point 
+    switchport trunk group mlag-peer
+    mtu 1500
+!
+no spanning-tree vlan 4090
+!
+mlag configuration
+    domain-id leaf3AB
+    peer-link port-chann 999
+    local-interface vlan 4090
+    peer-address {{mlag_vlan4090_peer_ip}}
+    no shut
+    peer-address heartbeat {{mlag_peer_mgmt_ip}} vrf mgmt
+    dual-primary detection delay 10 action errdisable all-interfaces
+!
+!
+ip virtual-router mac-address 00:1c:73:00:00:01
+
+

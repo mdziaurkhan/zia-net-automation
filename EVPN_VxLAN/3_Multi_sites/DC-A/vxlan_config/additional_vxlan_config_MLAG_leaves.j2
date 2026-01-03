@@ -1,0 +1,51 @@
+interface Vxlan1
+   vxlan virtual-router encapsulation mac-address mlag-system-id 
+   vxlan mlag source-interface Loopback1
+!
+no spanning-tree vlan-id 4088-4089
+!
+vlan 4089
+   name MLAG_PEER_VRF_PROD
+   trunk group mlag-peer
+!
+vlan 4088
+   name MLAG_PEER_VRF_DEV
+   trunk group mlag-peer
+!
+interface Vlan4089
+   description MLAG iBGP Peer - VRF PROD
+   no autostate
+   vrf PROD
+   ip address {{vlan_8088_8089_ip}}
+!
+interface Vlan4088
+   description MLAG iBGP Peer - VRF DEV
+   no autostate
+   vrf DEV
+   ip address {{vlan_8088_8089_ip}}
+!
+ip prefix-list PL-MLAG-PEER-VRFS
+   seq 10 permit 169.253.0.0/31
+!
+route-map RM-CONN-2-BGP-VRFS deny 10
+   match ip address prefix-list PL-MLAG-PEER-VRFS
+!
+route-map RM-CONN-2-BGP-VRFS permit 20
+!
+!
+router bgp {{switch_bgp_asn}}
+   vrf PROD
+      neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
+      update wait-install
+      address-family ipv4
+         neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} activate
+      !
+   vrf DEV
+      neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} peer group MLAG-IPV4-PEER
+      redistribute connected route-map RM-CONN-2-BGP-VRFS
+      update wait-install 
+      address-family ipv4
+         neighbor {{mlag_prod_dev_vrf_iBGP_peer_ip}} activate
+      !
+
