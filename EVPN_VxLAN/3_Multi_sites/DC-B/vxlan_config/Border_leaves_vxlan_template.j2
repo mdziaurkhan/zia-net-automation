@@ -1,0 +1,77 @@
+vrf instance PROD
+vrf instance DEV
+!
+interface Vxlan1
+   vxlan vrf PROD vni 60100
+   vxlan vrf DEV vni 60099
+!
+ip routing vrf PROD
+!
+ip routing vrf DEV
+!   
+router bgp {{switch_bgp_asn}}
+   !
+   vlan 100
+      redistribute router-mac virtual-ip
+   !
+   vlan 200
+      redistribute router-mac virtual-ip
+   !
+   vlan 300
+      redistribute router-mac virtual-ip
+   !
+  vlan 99
+      redistribute router-mac virtual-ip
+   !
+   vlan 199
+      redistribute router-mac virtual-ip
+   !
+   vlan 299
+      redistribute router-mac virtual-ip
+   !
+   vrf PROD
+      rd {{rd_switch_loopback0}}:60100
+      route-target import evpn 60100:60100
+      route-target export evpn 60100:60100
+      update wait-install 
+      !
+   vrf DEV
+      rd {{rd_switch_loopback0}}:60099
+      route-target import evpn 60099:60099
+      route-target export evpn 60099:60099
+      update wait-install 
+      !
+!
+!Overlay Unicast Centralized IRB for MALAG, already configured during MLAG config
+ip virtual-router mac-address c001.cafe.b3ab 
+!
+interface Vlan100
+   mtu 9014 
+   vrf PROD
+   ip address virtual 10.0.100.254/24 
+!
+interface Vlan200
+   mtu 9014
+   vrf PROD
+   ip address virtual 10.0.200.254/24
+!
+interface Vlan300
+   mtu 9014 
+   vrf PROD
+   ip address virtual 10.0.30.254/24 
+!
+interface Vlan99
+   mtu 9014 
+   vrf DEV
+   ip address virtual 10.0.99.254/24 
+!
+interface Vlan199
+   mtu 9014
+   vrf DEV
+   ip address virtual 10.0.199.254/24
+!
+interface Vlan299
+   mtu 9014 
+   vrf DEV
+   ip address virtual 10.0.29.254/24 
+!

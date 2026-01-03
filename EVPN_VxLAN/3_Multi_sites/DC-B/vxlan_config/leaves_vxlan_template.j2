@@ -1,0 +1,59 @@
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+
+!Overlay layer 2: MAC-VRF --------------- layer2 VRF
+vlan 100
+   name web
+!
+vlan 200
+   name app
+!
+vlan 300
+   name db
+!
+vlan 99
+   name dev-web
+!
+vlan 199
+   name dev-app
+!
+vlan 299
+   name dev-db
+!
+!
+interface Vxlan1
+   vxlan vlan 100,200,300,99,199,299 vni 20100,20200,20300,20099,20199,20299
+!
+router bgp {{switch_bgp_asn}}
+   !
+   vlan 100
+      rd {{rd_switch_loopback0}}:20100
+      route-target both 20100:20100
+      redistribute learned
+   !
+   vlan 200
+      rd {{rd_switch_loopback0}}:20200
+      route-target both 20200:20200
+      redistribute learned
+   !
+   vlan 300
+      rd {{rd_switch_loopback0}}:20300
+      route-target both 20300:20300
+      redistribute learned
+   !
+  vlan 99
+      rd {{rd_switch_loopback0}}:20099
+      route-target both 20099:20099
+      redistribute learned
+   !
+   vlan 199
+      rd {{rd_switch_loopback0}}:20199
+      route-target both 20199:20199
+      redistribute learned
+   !
+   vlan 299
+      rd {{rd_switch_loopback0}}:20299
+      route-target both 20299:20299
+      redistribute learned
+   !
