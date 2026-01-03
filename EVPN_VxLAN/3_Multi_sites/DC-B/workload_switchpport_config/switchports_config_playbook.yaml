@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/workload_switchpport_config/switchports_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/workload_switchpport_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/workload_switchpport_config/switchports_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/workload_switchpport_config/host.yaml
 - name: LEAF110 SWITCHPOERTS CONFIG
   hosts: leaf110
   gather_facts: no
