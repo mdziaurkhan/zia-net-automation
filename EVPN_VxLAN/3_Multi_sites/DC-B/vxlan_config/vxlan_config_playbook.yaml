@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/vxlan_config/vxlan_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/vxlan_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/vxlan_config/vxlan_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-B/vxlan_config/host.yaml
 - name: Leaves VXLAN Config 
   hosts: leaves
   gather_facts: no
@@ -14,4 +14,12 @@
   - name: mlag leaves additional vxlan config and save
     arista.eos.eos_config:
       src: additional_vxlan_config_MLAG_leaves.j2
+      save_when : changed
+- name: Boeder Leaves additinal VXLAN Config 
+  hosts: Border_leaves
+  gather_facts: no
+  tasks:
+  - name: boeder Leaves additinal VXLAN Config  and save
+    arista.eos.eos_config:
+      src: Border_leaves_vxlan_template.j2
       save_when : changed
