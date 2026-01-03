@@ -1,0 +1,12 @@
+all:
+  children:
+    switches:
+      children:
+        leaf110:   
+          hosts:
+            192.168.168.110:
+        leaf120:   
+          hosts:
+            192.168.168.120:
+
+

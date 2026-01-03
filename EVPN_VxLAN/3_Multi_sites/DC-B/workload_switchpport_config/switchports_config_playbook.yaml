@@ -1,0 +1,17 @@
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/workload_switchpport_config/switchports_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/workload_switchpport_config/host.yaml
+- name: LEAF110 SWITCHPOERTS CONFIG
+  hosts: leaf110
+  gather_facts: no
+  tasks:
+  - name: leaf110 switchports config and save
+    arista.eos.eos_config:
+      src: leaf110.cfg
+      save_when : changed
+- name: LEAF120 SWITCHPOERTS CONFIG
+  hosts: leaf120
+  gather_facts: no
+  tasks:
+  - name: leaf120 switchports config and save
+    arista.eos.eos_config:
+      src: leaf120.cfg
+      save_when : changed
