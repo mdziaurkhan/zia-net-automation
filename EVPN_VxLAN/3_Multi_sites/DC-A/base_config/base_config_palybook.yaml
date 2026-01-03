@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/base_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/base_config/base_config_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/base_config/host.yaml
 - name: Leaves MLAG Config 
   hosts: MLAG_leaves
   gather_facts: no

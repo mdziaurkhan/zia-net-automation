@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/vxlan_config/vxlan_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/vxlan_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/vxlan_config/vxlan_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/vxlan_config/host.yaml
 - name: Leaves VXLAN Config 
   hosts: leaves
   gather_facts: no

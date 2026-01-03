@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/evpn_overlay_config/overlay_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/evpn_overlay_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/evpn_overlay_config/overlay_config_playbook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/DC-A/evpn_overlay_config/host.yaml
 - name: Leaves EVPN OVERLAY Config 
   hosts: leaves
   gather_facts: no
