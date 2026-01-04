@@ -1,0 +1,13 @@
+router bgp {{switch_bgp_asn}}
+   neighbor OTHER-DC-GW-EVPN-PEERS peer group
+   neighbor OTHER-DC-GW-EVPN-PEERS remote-as {{other_DC_switch_bgp_asn}}
+   neighbor OTHER-DC-GW-EVPN-PEERS update-source {{bgp_src_interface}}
+   neighbor OTHER-DC-GW-EVPN-PEERS ebgp-multihop 3 
+   neighbor OTHER-DC-GW-EVPN-PEERS password @rista123!
+   neighbor OTHER-DC-GW-EVPN-PEERS send-community extended
+   neighbor {{bgp_neig_other_DC_bgw1_evpn}} peer group OTHER-DC-GW-EVPN-PEERS
+   neighbor {{bgp_neig_other_DC_bgw2_evpn}} peer group OTHER-DC-GW-EVPN-PEERS
+   !
+   address-family evpn
+      neighbor OTHER-DC-GW-EVPN-PEERS activate
+      route import match-failure action discard

@@ -1,0 +1,4 @@
+switch_bgp_asn : 65003
+other_DC_switch_bgp_asn : 65130
+bgp_neig_other_DC_bgw1_evpn : 100.100.200.131
+bgp_neig_other_DC_bgw2_evpn: 100.100.200.132
