@@ -7,8 +7,3 @@
     arista.eos.eos_config:
       src: inter_BorderLeaves_overlay_template.j2
       save_when : changed
-
-F:\zia-net-automation\EVPN_VxLAN\3_Multi_sites\Border_Leaves_extra_config\evpn_overlay_config
-
-
- 
