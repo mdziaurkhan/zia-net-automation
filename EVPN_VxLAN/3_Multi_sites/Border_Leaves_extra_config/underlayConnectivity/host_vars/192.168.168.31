@@ -1,5 +1,5 @@
 interfaceE11_data_ip : 172.20.1.0/31
-interfaceE12_data_ip : 172.16.1.2/31
+interfaceE12_data_ip : 172.20.1.2/31
 switch_bgp_asn : 65003
 bgp_neig_other_DC_bgw1 : 172.20.1.1
 bgp_neig_other_DC_bgw2: 172.20.1.3
