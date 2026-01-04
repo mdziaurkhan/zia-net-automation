@@ -1,0 +1,26 @@
+!
+interface Ethernet11
+   desc spine1
+   no switchport
+   ip address {{interfaceE11_data_ip}}
+   mtu 9214
+   no shutdown
+
+interface Ethernet12
+   desc spine2
+   no switchport
+   ip address {{interfaceE12_data_ip}}
+   mtu 9214
+   no shutdown
+!
+router bgp {{switch_bgp_asn}}
+   neighbor IPv4_UNDERLAY_BGW_PEERS peer group
+   neighbor IPv4_UNDERLAY_BGW_PEERS remote-as {{other_DC_switch_bgp_asn}}
+   neighbor IPv4_UNDERLAY_BGW_PEERS maximum-routes 1000 warning-only
+   neighbor IPv4_UNDERLAY_BGW_PEERS password @rista123!
+   neighbor {{bgp_neig_other_DC_bgw1}} peer group IPv4_UNDERLAY_BGW_PEERS
+   neighbor {{bgp_neig_other_DC_bgw2}} peer group IPv4_UNDERLAY_BGW_PEERS
+   address-family ipv4
+      neighbor IPv4_UNDERLAY_BGW_PEERS activate
+      redistribute connected
+
