@@ -2,4 +2,4 @@ switch_bgp_asn : 65130
 rd_switch_loopback0 : 100.100.200.131
 vlan_8088_8089_ip : 169.253.0.0/31
 mlag_prod_dev_vrf_iBGP_peer_ip : 169.253.0.1
-{{VxLAN_source_interface}} : Loopback1
+VxLAN_source_interface : Loopback1
