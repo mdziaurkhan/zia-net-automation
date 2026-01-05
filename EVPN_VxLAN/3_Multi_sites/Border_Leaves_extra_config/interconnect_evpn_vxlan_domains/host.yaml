@@ -1,0 +1,14 @@
+all:
+  children:
+    Border_leaves:
+      children:
+        DC_A_Border_leaves:   
+          hosts:
+            192.168.168.31:
+            192.168.168.32:
+        DC_B_Border_leaves:   
+          hosts:
+            192.168.168.131:
+            192.168.168.132:
+
+

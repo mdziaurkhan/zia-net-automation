@@ -1,0 +1,24 @@
+router bgp {{switch_bgp_asn}}
+   address-family evpn
+      neighbor OTHER-DC-GW-EVPN-PEERS domain remote
+      neighbor default next-hop-self received-evpn-routes route-type ip-prefix inter-domain
+!
+!under each MAC-VRF, both the local and remote domain route distinguisher and route target are configured
+vlan 100
+   rd evpn domain remote {{vlan100_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan100_other_domain_RT}}
+vlan 200
+   rd evpn domain remote {{vlan200_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan200_other_domain_RT}}
+vlan 300
+   rd evpn domain remote {{vlan300_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan300_other_domain_RT}}
+vlan 99
+   rd evpn domain remote {{vlan99_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan99_other_domain_RT}}
+vlan 199
+   rd evpn domain remote {{vlan199_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan199_other_domain_RT}}
+vlan 299
+   rd evpn domain remote {{vlan299_other_domain_RD}}
+   route-target import export evpn domain remote {{vlan299_other_domain_RT}}

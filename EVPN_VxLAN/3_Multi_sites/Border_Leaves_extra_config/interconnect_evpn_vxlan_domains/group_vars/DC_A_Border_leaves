@@ -1,0 +1,7 @@
+switch_bgp_asn : 65003
+vlan100_other_domain_RT : 20100:20100
+vlan200_other_domain_RT : 20200:20200
+vlan300_other_domain_RT : 20300:20300
+vlan99_other_domain_RT :  20099:20099
+vlan199_other_domain_RT : 20199:20199
+vlan299_other_domain_RT : 20299:20299

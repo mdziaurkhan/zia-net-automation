@@ -1,0 +1,12 @@
+vlan100_other_domain_RD :
+vlan100_other_domain_RT :
+vlan200_other_domain_RD :
+vlan200_other_domain_RT : 
+vlan300_other_domain_RD :
+vlan300_other_domain_RT :
+vlan99_other_domain_RD :
+vlan99_other_domain_RT :  
+vlan199_other_domain_RD :
+vlan199_other_domain_RT :
+vlan299_other_domain_RD :
+vlan299_other_domain_RT :
