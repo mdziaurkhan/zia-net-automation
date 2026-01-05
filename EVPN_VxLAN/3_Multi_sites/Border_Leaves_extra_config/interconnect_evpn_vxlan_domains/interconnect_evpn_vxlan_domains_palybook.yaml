@@ -1,4 +1,4 @@
-#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/Border_Leaves_extra_config/evpn_overlay_config/inter_BorderLeaves_overlay_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/Border_Leaves_extra_config/evpn_overlay_config/host.yaml
+#ansible-playbook /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/Border_Leaves_extra_config/interconnect_evpn_vxlan_domains/interconnect_evpn_vxlan_domains_palybook.yaml -i /mnt/f/zia-net-automation/EVPN_VxLAN/3_Multi_sites/Border_Leaves_extra_config/interconnect_evpn_vxlan_domains/host.yaml
 - name: Inter Border Leaves Overlay
   hosts: Border_leaves
   gather_facts: no
@@ -7,3 +7,4 @@
     arista.eos.eos_config:
       src: inter_BorderLeaves_overlay_template.j2
       save_when : changed
+
