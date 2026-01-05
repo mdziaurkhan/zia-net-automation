@@ -1,1 +1,19 @@
 switch_bgp_asn : 65130
+vlan100_other_domain_RD_1 : 100.100.100.31:10100
+vlan100_other_domain_RD_2 : 100.100.100.32:10100
+vlan100_other_domain_RT : 10100:10100
+vlan200_other_domain_RD_1 : 100.100.100.31:10200
+vlan200_other_domain_RD_2:  100.100.100.32:10200
+vlan200_other_domain_RT : 10200:10200
+vlan300_other_domain_RD_1 : 100.100.100.31:10300
+vlan300_other_domain_RD_2 : 100.100.100.32:10300
+vlan300_other_domain_RT : 10300:10300
+vlan99_other_domain_RD_1 : 100.100.100.31:10099
+vlan99_other_domain_RD_2 : 100.100.100.32:10099
+vlan99_other_domain_RT :  10099:10099
+vlan199_other_domain_RD_1 : 100.100.100.31:10199
+vlan199_other_domain_RD_2 : 100.100.100.32:10199
+vlan199_other_domain_RT : 10199:10199
+vlan299_other_domain_RD_1 : 100.100.100.31:10299
+vlan299_other_domain_RD_2 : 100.100.100.32:10299
+vlan299_other_domain_RT : 10299:10299
